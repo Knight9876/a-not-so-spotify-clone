@@ -20,6 +20,41 @@ const Player = ({ currentSong, songs, setCurrentSong }) => {
     JSON.parse(localStorage.getItem("favourites")) || []
   );
 
+  const togglePlayPause = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.warn("Play error:", err));
+    }
+  };
+
+  const nextSong = () => {
+    if (!songs || songs.length === 0) return;
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    const nextIndex = (currentIndex + 1) % songs.length;
+    setCurrentSong(songs[nextIndex]);
+  };
+
+  const prevSong = () => {
+    if (!songs || songs.length === 0) return;
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
+    setCurrentSong(songs[prevIndex]);
+  };
+
+  const handleSeek = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const newTime = (clickX / rect.width) * duration;
+    audioRef.current.currentTime = newTime;
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -63,41 +98,6 @@ const Player = ({ currentSong, songs, setCurrentSong }) => {
       };
     }
   }, [currentSong, nextSong]);
-
-  const togglePlayPause = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => console.warn("Play error:", err));
-    }
-  };
-
-  const nextSong = () => {
-    if (!songs || songs.length === 0) return;
-    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    const nextIndex = (currentIndex + 1) % songs.length;
-    setCurrentSong(songs[nextIndex]);
-  };
-
-  const prevSong = () => {
-    if (!songs || songs.length === 0) return;
-    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    const prevIndex = (currentIndex - 1 + songs.length) % songs.length;
-    setCurrentSong(songs[prevIndex]);
-  };
-
-  const handleSeek = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const newTime = (clickX / rect.width) * duration;
-    audioRef.current.currentTime = newTime;
-  };
 
   // Extract dominant color and update body background
   useEffect(() => {
