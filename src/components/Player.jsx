@@ -62,7 +62,7 @@ const Player = ({ currentSong, songs, setCurrentSong }) => {
         audio.removeEventListener("ended", nextSong);
       };
     }
-  }, [currentSong]);
+  }, [currentSong, nextSong]);
 
   const togglePlayPause = () => {
     if (!audioRef.current) return;
