@@ -1,0 +1,55 @@
+@import "sidebar";
+@import "section";
+@import "player";
+
+@font-face {
+  font-family: "Basier Circle";
+  src: url("../assets/fonts/BasierCircle-Regular.woff2") format("woff2"),
+    url("../assets/fonts/BasierCircle-Regular.woff") format("woff"),
+    url("../assets/fonts/BasierCircle-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: none; /* instead of thin */
+  scrollbar-color: transparent transparent;
+}
+
+// Apply globally
+body {
+  font-family: "Basier Circle", sans-serif;
+  background: #251919;
+  overflow-y: auto;
+  touch-action: manipulation;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
+.menu {
+  z-index: 99 !important;
+  color: white !important;
+  position: fixed;
+  top: 2%;
+  left: 4%;
+  cursor: pointer;
+  visibility: hidden;
+
+  @media screen and (max-width: 768px) {
+    visibility: visible;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 0; /* Adjust width as needed */
+}

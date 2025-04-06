@@ -1,0 +1,90 @@
+.sidebar {
+  width: 250px;
+  height: 100dvh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    margin: 0;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+      visibility 0.5s ease-in-out;
+
+    &.visible {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .logo {
+    position: fixed;
+    top: 32px;
+    left: 32px;
+    height: 40px;
+
+    .brand-name {
+      font-family: "Raleway", sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+  }
+
+  .nav-links {
+    position: fixed;
+    width: 150px;
+    height: 200px;
+    top: 100px;
+    left: 32px;
+    gap: 24px;
+
+    .nav-link {
+      color: rgba($color: white, $alpha: 0.4);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 32px;
+      transition: 0.3s;
+      padding: 0;
+
+      &:hover,
+      &.active {
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .profile {
+    position: fixed;
+    bottom: 5%;
+    left: 32px;
+
+    img {
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+    }
+  }
+
+  .close {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 85%;
+    top: 2%;
+    color: white;
+    cursor: pointer;
+  }
+}

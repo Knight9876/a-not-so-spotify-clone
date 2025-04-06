@@ -1,0 +1,150 @@
+.main-container-section {
+  width: 440px;
+  min-height: 100dvh;
+  z-index: 99;
+  margin-top: 40px;
+  overflow-y: auto;
+
+  @media screen and (max-width: 1200px) {
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    margin: 0;
+    padding-top: 30px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+      visibility 0.5s ease-in-out;
+
+    &.visible {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .for-you {
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 435px) {
+      width: 350px;
+    }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 36px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .search-bar {
+      width: 400px;
+      height: 48px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+
+      @media screen and (max-width: 435px) {
+        width: 300px;
+      }
+
+      input {
+        position: sticky;
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: rgba($color: white, $alpha: 0.6);
+        font-size: 18px;
+        font-weight: 400;
+        outline: none;
+        line-height: 28px;
+        padding: 5px;
+      }
+
+      .search-icon {
+        color: rgba($color: white, $alpha: 0.4);
+        font-size: 16px;
+      }
+    }
+
+    .song-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow-y: auto;
+      height: 700px;
+      margin: 30px 0;
+
+      .song-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-radius: 8px;
+        height: 88px;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .song-cover {
+          width: 50px;
+          height: 50px;
+          border-radius: 8px;
+          margin-right: 15px;
+
+          @media screen and (max-width: 435px) {
+            width: 35px;
+            height: 35px;
+          }
+        }
+
+        .song-info {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+
+          .song-title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+
+          .song-artist {
+            font-size: 14px;
+            color: #b3b3b3;
+          }
+        }
+
+        .song-duration {
+          font-size: 14px;
+          color: #b3b3b3;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  .close-button {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 90%;
+    top: 5%;
+    color: white;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,156 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  z-index: 50;
+
+  .player-container {
+    color: white;
+    margin: 40px;
+    border-radius: 16px;
+
+    @media screen and (max-width: 768px) {
+      margin: 0;
+    }
+
+    .album-art img {
+      width: clamp(280px, 50vw, 480px);
+      height: clamp(280px, 50vw, 480px);
+      border-radius: 8px;
+    }
+
+    .song-info {
+      margin-top: 12px;
+
+      .song-title {
+        font-size: 32px;
+        line-height: 36px;
+        font-weight: 700;
+      }
+      .artist-name {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .icon {
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s;
+      }
+
+      .fa-solid {
+        font-size: 16px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .play-button {
+        background: white;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .play,
+        .pause {
+          color: black;
+          font-size: 28px;
+        }
+      }
+    }
+
+    .progress-bar-container {
+      width: clamp(280px, 50vw, 480px);
+      margin-top: 10px; // Add spacing
+      padding: 5px 0; // Ensure visibility
+      display: flex;
+      justify-content: center;
+    }
+
+    .progress-bar {
+      width: clamp(280px, 50vw, 480px);
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+
+      .progress {
+        height: 6px;
+        width: 200px;
+        background: white;
+        border-radius: 16px;
+        transition: width 0.3s ease-in-out;
+      }
+    }
+
+    .playbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(32px, 6vw, 104px);
+      width: clamp(280px, 50vw, 480px);
+      padding-top: 0.5rem;
+
+      .more-bg,
+      .volume-bg,
+      .fav-bg {
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+          font-size: 24px;
+          cursor: pointer;
+          color: white;
+          transition: 0.3s;
+        }
+      }
+
+      .fav-slide {
+        position: fixed;
+        margin-left: 50px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+
+        @media screen and (max-width: 768px) {
+          margin-top: 50px;
+          margin-left: 0;
+          transform: translateY(-20px);
+        }
+
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .fav-icon {
+          &.favourite {
+            color: red;
+            border-color: red;
+          }
+        }
+      }
+    }
+  }
+}
