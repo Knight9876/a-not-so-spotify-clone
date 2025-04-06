@@ -39,7 +39,7 @@ const nextSong = useCallback(() => {
   const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
   const nextIndex = (currentIndex + 1) % songs.length;
   setCurrentSong(songs[nextIndex]);
-}, [songs, currentSong]);
+}, [songs, currentSong, setCurrentSong]);
 
   const prevSong = () => {
     if (!songs || songs.length === 0) return;
