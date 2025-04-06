@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import "../styles/player.scss";
 import ColorThief from "color-thief-browser";
 import {
@@ -34,12 +34,12 @@ const Player = ({ currentSong, songs, setCurrentSong }) => {
     }
   };
 
-  const nextSong = () => {
-    if (!songs || songs.length === 0) return;
-    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    const nextIndex = (currentIndex + 1) % songs.length;
-    setCurrentSong(songs[nextIndex]);
-  };
+const nextSong = useCallback(() => {
+  if (!songs || songs.length === 0) return;
+  const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+  const nextIndex = (currentIndex + 1) % songs.length;
+  setCurrentSong(songs[nextIndex]);
+}, [songs, currentSong]);
 
   const prevSong = () => {
     if (!songs || songs.length === 0) return;
